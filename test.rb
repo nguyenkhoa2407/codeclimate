@@ -9,9 +9,10 @@ def update
     render "edit" and return
   end
 
-  new_attributes = permitted_params[:booking_item]
-  new_attributes["status"] = "stored"
-  new_attributes["return_item_request_id"] = nil
+  new_attributes = permitted_params[:booking_item].merge({
+    status: "stored", 
+    return_item_request_id: nil
+  })
 
   booking_item = BookingItem.find(params[:id])
   redirect_to admin_booking_item_path(booking_item) if booking_item.update(new_attribuites)

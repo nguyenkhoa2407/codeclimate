@@ -12,7 +12,7 @@ def create
     new_item = BookingItem.new({ 
       booking_id: booking_id, 
       status: 'stored', 
-      description: item_description(image), 
+      description: image.original_filename.split(".")[0], 
       image: image 
     })
     count_items_created_successfullly += 1 if new_item.save
